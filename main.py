@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Restaurant, MenuItem
+from database_setup import Base, User, Category, Item
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ session = DBSession()
 @app.route('/login/')
 
 # Routing for logout
-@app.route('/logout'/)
+@app.route('/logout/')
 
 # Routing for main menu
 @app.route('/')
