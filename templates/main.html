@@ -1,7 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Item-Catalog Site</title>
 </head>
 <body>
+    <header>
+        <h1>Item-Catalog</h1>
+    </header>
 
+    <div class="menupane">
+        {% for category in categories %}
+        <ul>
+            <li>
+                <a href="{{url_for('categoryItems', category_id)}}">
+                    {{category.name}}
+                </a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="itempane">
+
+    </div>
 </body>
 </html>

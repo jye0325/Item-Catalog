@@ -24,9 +24,14 @@ session = DBSession()
 
 # Routing for login
 @app.route('/login/')
-
+def login():
+    """This returns a webpage for users to login"""
+    return "This is a test page for login()"
 # Routing for logout
 @app.route('/logout/')
+def logout():
+    """This returns a webpage for users to logout"""
+    return "This is a test page for logout()"
 
 # Routing for main menu
 @app.route('/')
