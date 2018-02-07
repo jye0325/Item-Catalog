@@ -25,15 +25,17 @@
 			<div class="item">
 				{% for item in items %}
 					<p>
-                        {{item.name}}
+                        <h3>{{item.name}}</h3><br>
+                        <br>{{item.description}} <br>
                     </p>
-				{% else %}
+                {% else %}
+                    <h1>Latest Items</h1>
                     {% for latestItem in latestItems %}
                     <p>
                         {{latestItem.name}}
                     </p>
                     {% else %}
-                        <h3> This is a test, no entries </h3>
+                        <h3> This is a test for no entries </h3>
                     {% endfor %}
 				{% endfor %}
 			</div>

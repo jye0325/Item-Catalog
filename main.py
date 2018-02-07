@@ -73,15 +73,29 @@ def itemMenu(category_id, item_id):
 	"""Returns details about the particular item in the item page"""
 	return "This is a test page for itemMenu()"
 
-@app.route('/main/<int:category_id>/item/<int:item_id>/edit/')
+@app.route('/main/<int:category_id>/item/<int:item_id>/edit/', methods=['GET','POST'])
 def editItem(category_id, item_id):
 	"""Edit the details about the particular item"""
-	return "This is a test page for editItem()"
+	item = session.query(Item).filter_by(category_id=category_id, id=item_id).one()
+	if request.method == 'POST':
+		session.add(item)
+		session.commit()
+		flash('Item was successfully editted!')
+		return redirect(url_for('mainMenu'))
+	else:
+		return render_template('edit.html', item=item)
 	
-@app.route('/main/<int:category_id>/item/<int:item_id>/delete')
+@app.route('/main/<int:category_id>/item/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteItem(category_id, item_id):
 	"""Deletes the particular item"""
-	return "This is a test page for deleteItem()"
+	item = session.query(Item).filter_by(category_id=category_id, id=item_id).one()
+	if request.method == 'POST':
+		session.delete(item)
+		session.commit()
+		flash('Item was successfully deleted!')
+		return redirect(url_for('mainMenu'))
+	else:
+		return render_template('delete.html', item=item)
 
 if __name__ == '__main__':
 	app.secret_key = 'root'
