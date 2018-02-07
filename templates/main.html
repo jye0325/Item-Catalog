@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
-    <title>Item-Catalog Site</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial scale=1.0">
+	<link rel="stylesheet" type=text/css href="{{url_for('static', filename='main.css')}}">
 </head>
 <body>
-    <header>
-        <h1>Item-Catalog</h1>
-    </header>
-
-    <div class="menupane">
-        {% for category in categories %}
-        <ul>
-            <li>
-                <a href="{{url_for('categoryItems', category_id)}}">
-                    {{category.name}}
-                </a>
-            </li>
-        </ul>
-        {% endfor %}
+	<header class="header">
+		<div class="title">
+			<h1>Item-Catalog App</h1>
+		</div>
+	</header>
+	<div class="container">
+		<div class="grid-container">
+			<div class="menu">
+                {% for category in categories %}
+                <p>
+					<a href="{{url_for('categoryItems', category_id = category.id)}}"> {{category.name}}</a>
+                </p>
+                {% else %}
+                    <h3> This is a test, no entries </h3>
+				{% endfor %}
+			</div>
+			<div class="item">
+				{% for item in items %}
+					<p>
+                        {{item.name}}
+                    </p>
+				{% else %}
+                    {% for latestItem in latestItems %}
+                    <p>
+                        {{latestItem.name}}
+                    </p>
+                    {% else %}
+                        <h3> This is a test, no entries </h3>
+                    {% endfor %}
+				{% endfor %}
+			</div>
+        </div>
     </div>
-    <div class="itempane">
-
+    <a class="loginbutton" href="">Login</a>
+    {% for message in messages %}
+    <div class="flash">	
+            This is a test flash message area.
     </div>
+    {% endfor %}
 </body>
 </html>
+
+
