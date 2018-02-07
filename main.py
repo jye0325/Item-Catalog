@@ -39,17 +39,16 @@ def logout():
 def mainMenu():
 	"""Returns a list of categories in the menu pane and the latest 5 added
 	items in the item pane."""
-	#categories = session.query(Category).all()
-	#latestItems = session.query(Item).limit(5)
-	#return render_template('main.html', categories=categories)
-	return "This is a test page for mainMenu()"
+	categories = session.query(Category).all()
+	latestItems = session.query(Item).limit(5)
+	return render_template('main.html', categories=categories, latestItems=latestItems)
 
 @app.route('/main/<int:category_id>/')
 def categoryItems(category_id):
 	"""Updates the item pane with a list of items specific to that category"""
-	#items = session.query(Item).filter_by(category_id=category_id)
-	#return render_template('main.hmtl', items=items, category_id=category_id)
-	return "This is a test page for categoryItems"
+	categories = session.query(Category).all()
+	items = session.query(Item).filter_by(category_id=category_id)
+	return render_template('main.html', categories=categories, items=items, category_id=category_id)
 
 @app.route('/main/new/')
 def newCategory():
