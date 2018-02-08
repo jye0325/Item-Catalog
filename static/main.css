@@ -54,7 +54,7 @@ body{
 .flash{
 	background-color: lightgrey;
 	bottom: 0px;	
-	font-size: 7px;
+	font-size: 20px;
 	text-align: center;
 	position: fixed;
 	width: 100%;

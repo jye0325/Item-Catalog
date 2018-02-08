@@ -14,17 +14,25 @@
 	<div class="container">
         <div>
             <h3>Would you like to delete this item?</h3>
-            <form action="#" method='POST'>
+            <form action="{{url_for('deleteItem', item=item, item_id=item_id, category_id=id)}}" method='POST'>
                 <button type="submit" id="submit">Delete</button>
-                <a href="#"><button type="button">Cancel</button></a>
+                <a href="{{url_for('mainMenu')}}">Cancel</a>
             </form>
         </div>	
     </div>
     <a class="loginbutton" href="">Login</a>
-    {% for message in messages %}
     <div class="flash">	
-            This is a test flash message area.
-    </div>
-    {% endfor %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+             <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            This is a test flash message.       
+        {% endif %}
+    {% endwith %}
+    </div>  
 </body>
 </html>

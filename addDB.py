@@ -18,8 +18,12 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-# Reverts database to include changes
-session.rollback()
+"""
+# Test User
+user1 = User(name="Test User", email="None")
+session.add(user1)
+session.commit()
+"""
 
 # Category/Item Setup
 category1 = Category(name="Category 1")
