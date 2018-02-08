@@ -42,11 +42,19 @@
         </div>
     </div>
     <a class="loginbutton" href="">Login</a>
-    {% for message in messages %}
     <div class="flash">	
-            This is a test flash message area.
-    </div>
-    {% endfor %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                This is a test flash message.       
+            {% endif %}
+        {% endwith %}
+    </div>  
 </body>
 </html>
 
