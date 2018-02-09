@@ -41,7 +41,7 @@
 			</div>
         </div>
     </div>
-    <a class="loginbutton" href="">Login</a>
+    <a class="loginbutton" href="{{url_for('login')}}">Login</a>
     <div class="flash">	
         {% with messages = get_flashed_messages() %}
             {% if messages %}
