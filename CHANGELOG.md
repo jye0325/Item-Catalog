@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [v0.6.0] - 2018-02-10
+### Added
+- Added `TODO.md` to keep track of progress and what features needs to be added before stable relase.
+
+### Changed
+- Modified `main.css` to clicking on Item-Catalog on the header pane will redirect back to `main.html`.
+- Modified `addDB.py` to display more meaningful Category and Item entries for testing.
+
+### Removed
+- Removed `itemmenu.html`.
 
 ## [v0.5.0] - 2018-02-07
 ### Added
