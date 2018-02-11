@@ -28,10 +28,11 @@
 - [ ] Update with logout function (or delete file).
 
 ## Other
-- [ ] Add a `README.md` file.
-~~ - [ ] Move login button or option to the header.~~
+- [X] Add a `README.md` file.
 - [X] Make all headers on webpages to redirect to `main.html` or go back.
 
 ## Optional
 - [ ] Create different .css styles for different viewports.
+- [ ] Add a clickable link to serialize data into a JSON file.
+- [ ] Move login button or option to the header.
 - [ ] Deploy on Heroku.
