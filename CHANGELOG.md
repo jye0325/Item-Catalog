@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [v0.7.0] - 2018-02-11
+### Added
+- Added createCategory(), editCategory(), deleteCategory(), newItem(), editItem(), deleteItem() functions to their appropriate locations in `main.html`.
+- Added dropdown option in `newItem.html` to be able change what category you want to add the new item to.
+
+### Changed
+- Some webpages now will redirect back to `main.html` upon clicking **Item-Catalog**, others will redirect going back a page.
+- Changed the text and url from login to logout when a user is logged in.
+
+## Fixed
+- Fixed Latest Entries display in `main.html`.
+
 ## [v0.6.0] - 2018-02-10
 ### Added
 - Added `TODO.md` to keep track of progress and what features needs to be added before stable relase.

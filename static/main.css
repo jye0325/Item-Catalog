@@ -29,15 +29,10 @@ h1{
 ** BODY
 */
 a:link{
-	background-color: white;
 	color: black;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-}
-a:hover, a:active{
-	background-color: rgb(201, 243, 142);
-	color: white;
 }
 body{
 	background-color: #ffffff;
@@ -72,12 +67,17 @@ body{
 	border-radius: 25px;
 	border-style: solid;
 	text-align: center;
-	font-size: 11px;
+	font-size: 14px;
 }
+/* FIX THIS */
+.grid-container > div:hover{
+	background-color: rgb(201, 243, 142);
+}
+
 .loginbutton{
 	position: fixed;
-	bottom: 4%;
-	right: 4%;
+	bottom: 3%;
+	right: 3%;
 }
 .menu{
 /*	border: 2px solid #73AD21;
@@ -94,4 +94,7 @@ body{
 	display: inline-block;
 	height: 100%; */
 	float: right;
+}
+.itemText{
+	font-size: 18px;
 }

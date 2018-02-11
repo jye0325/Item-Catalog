@@ -8,7 +8,7 @@
 <body>
 	<header class="header">
 		<div class="title">
-			<h1>Item-Catalog App</h1>
+            <a href="{{url_for('mainMenu')}}"><h1>Item-Catalog App</h1></a>
 		</div>
 	</header>
 	<div class="container">
@@ -17,24 +17,20 @@
             <form action="{{url_for('newCategory')}}" method='POST'>
                 <p>Category Name: <br>
                 <input type="text" size="30" name="name" value=""></p>
-                <input type="submit" value="Edit">
+                <input type="submit" value="Submit">
                 <a href="{{url_for('mainMenu')}}">Cancel</a>
             </form>
         </div>	
     </div>
-    <a class="loginbutton" href="">Login</a>
-    <div class="flash">	
+    <a class="loginbutton" href="">Login</a>	
+    <div class="flash">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-             <ul>
-                {% for message in messages %}
-                <li>{{message}}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            This is a test flash message.       
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}   
         {% endif %}
     {% endwith %}
-    </div>  
+    </div>
 </body>
 </html>

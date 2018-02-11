@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
 
@@ -114,7 +114,7 @@ def gconnect():
 	output += '<img src="'
 	output += login_session['picture']
 	output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-	flash("you are now logged in as %s" % login_session['username'])
+	flash("You are now logged in as %s" % login_session['username'])
 	print "done!"
 	return output
 
@@ -147,7 +147,7 @@ def getUserID(email):
         return None
 
 # Routing for logout
-@app.route('/logout')
+@app.route('/logout/')
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
@@ -186,15 +186,21 @@ def mainMenu():
 	"""Returns a list of categories in the menu pane and the latest 5 added
 	items in the item pane."""
 	categories = session.query(Category).all()
-	latestItems = session.query(Item).limit(5)
-	return render_template('main.html', categories=categories, latestItems=latestItems)
+	latestItems = session.query(Item).order_by(desc(Item.id)).limit(5)
+	if 'username' in login_session:
+		return render_template('main.html', categories=categories, latestItems=latestItems, loggedIn=True)
+	else:
+		return render_template('main.html', categories=categories, latestItems=latestItems)
 
 @app.route('/main/<int:category_id>/')
 def categoryItems(category_id):
 	"""Updates the item pane with a list of items specific to that category"""
 	categories = session.query(Category).all()
 	items = session.query(Item).filter_by(category_id=category_id)
-	return render_template('main.html', categories=categories, items=items, category_id=category_id)
+	if 'username' in login_session:
+		return render_template('main.html', categories=categories, items=items, category_id=category_id,loggedIn=True)
+	else:
+		return render_template('main.html', categories=categories, items=items, category_id=category_id)
 
 @app.route('/main/newCategory/', methods=['GET','POST'])
 def newCategory():
@@ -262,17 +268,18 @@ def itemMenu(category_id, item_id):
 
 @app.route('/main/<int:category_id>/newItem/', methods=['GET','POST'])
 def newItem(category_id):
-	"""Creates a new item for an unspecified category."""
+	"""Creates a new item for a specified category."""
 	if 'username' not in login_session:
 		return redirect('/login')
+	categories = session.query(Category).all()
 	if request.method == 'POST':
-		item = Item(name=request.form['name'], category_id=category_id, description=request.form['description'], user_id=login_session['user_id'])
+		item = Item(name=request.form['name'], category_id=request.form['category'], description=request.form['description'], user_id=login_session['user_id'])
 		session.add(item)
 		session.commit()
-		flash('Successfully added new category, ' + item.name)
+		flash('Successfully added new item, ' + item.name)
 		return redirect(url_for('mainMenu'))
 	else:
-		return render_template('newItem.html', id=category_id)
+		return render_template('newItem.html', id=category_id, categories=categories)
 
 @app.route('/main/<int:category_id>/item/<int:item_id>/edit/', methods=['GET','POST'])
 def editItem(category_id, item_id):

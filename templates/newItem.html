@@ -8,7 +8,7 @@
 <body>
 	<header class="header">
 		<div class="title">
-			<h1>Item-Catalog App</h1>
+            <a href="javascript:history.back()"><h1>Item-Catalog App</h1></a>
 		</div>
 	</header>
 	<div class="container">
@@ -19,24 +19,22 @@
                 <input type="text" size="30" name="name" value=""></p>
                 <p>Item Description: <br>
                 <input type="text" size="100" name="description" value=""></p>
-                <input type="submit" value="Edit">
+                <p> Item Category: <br>
+                    <select name="category">
+                        {% for category in categories %}
+                            {% if id == category.id %}
+                            <option value="{{category.id}}" selected>{{category.name}}</option>
+                            {% else %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </p>
+                <input type="submit" value="Submit">
                 <a href="{{url_for('mainMenu')}}">Cancel</a>
             </form>
         </div>	
     </div>
     <a class="loginbutton" href="">Login</a>
-    <div class="flash">	
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-             <ul>
-                {% for message in messages %}
-                <li>{{message}}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            This is a test flash message.       
-        {% endif %}
-    {% endwith %}
-    </div>  
 </body>
 </html>
